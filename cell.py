@@ -65,6 +65,6 @@ class Cell:
 		"""
 		for i in range(0, self.numberOfInput):
 			#print "outputItem: ", outputItem, "exceptItem: ", exceptItem
-			#print "weight before: ", self.weight[i]
+			print "weight before: ", self.weight[i]
 			self.weight[i] += n*(exceptItem-outputItem )*inputList[i]
-			#print "weight after: ", self.weight[i]
+			print "weight after: ", self.weight[i]
