@@ -142,8 +142,8 @@ class Net:
 					isJudgeTrue = False
 
 					# cause the List_outputPattern is the list of the list, double getting the item.
-					_ = self.List_outputPattern[i]
-					self.weightRevise(self.List_inputPattern[i], outputList[0], _[0])
+					#_ = self.List_outputPattern[i]
+					self.weightRevise(self.List_inputPattern[i], outputList, self.List_outputPattern[i])
 
 
 			print "learning for ", learnningTimes, " times."
@@ -155,11 +155,14 @@ class Net:
 				break
 		print "learning complete!"
 
-	def weightRevise(self, inputList, outputItem, exceptItem):
+	def weightRevise(self, inputList, outputList, exceptList):
 		"""
 			Revise the weight during the learning period.
 			Call the weightRevise function toward each layer.
-			Input 	=> list of input value, the actual output, the desire output
+			
+			Input 	=> 	list of input value, 
+						list of actual output, 
+						list of desire output
 		"""
 		for i in range(1, self.numberOfLayer):
-			self.layerList[i].weightRevise(self.eta, inputList, outputItem, exceptItem)
+			self.layerList[i].weightRevise(self.eta, inputList, outputList, exceptList)

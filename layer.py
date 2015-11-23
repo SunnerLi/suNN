@@ -59,11 +59,15 @@ class Layer:
 			outputList.append(self.cellList[i].computing(inputList))
 		return outputList
 
-	def weightRevise(self, n, inputList, outputItem, exceptItem):
+	def weightRevise(self, n, inputList, outputList, exceptList):
 		"""
 			Revise the weight during the learning period.
 			Call the weightRevise function toward each cell.
-			Input 	=> eta value, list of input value, the actual output, the desire output
+
+			Input 	=> 	eta value, 
+						list of input value, 
+						the actual output, 
+						the desire output
 		"""
 		for i in range(0, self.numberOfCell):
-			self.cellList[i].weightRevise(n, inputList, outputItem, exceptItem)
+			self.cellList[i].weightRevise(n, inputList, outputList[i], exceptList[i])
