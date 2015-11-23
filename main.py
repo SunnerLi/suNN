@@ -1,5 +1,5 @@
 import sys
-from cell import *
+from net import *
 
 net = Net()
 net.constructNet(2)
