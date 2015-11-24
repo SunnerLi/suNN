@@ -22,11 +22,16 @@ class Layer:
 	"""
 		the class to define the layer in perceptron
 	"""
-	numberOfCell = 0	# The number of Input
-	cellList = []		# The list of the cell object
+	#define the debug mode
+	global debugMode
 
-	#def __init__(self):
-	#	pass
+	def __init__(self):
+		"""
+			The init function of the class
+			Initial the number of cell and cell list.
+		"""
+		self.numberOfCell = 0	# The number of Input
+		self.cellList = []		# The list of the cell object
 
 	def constructLayer(self, _numberOfCell):
 		"""
@@ -37,7 +42,10 @@ class Layer:
 		self.numberOfCell = _numberOfCell
 		for i in range(0, _numberOfCell):
 			cell = Cell()
-			self.cellList.append(cell)
+			_l = []
+			_l.append(cell)
+			#self.cellList.append(cell)
+			self.cellList += _l
 
 	def weightGenerate(self):
 		"""
@@ -57,6 +65,7 @@ class Layer:
 		outputList = []
 		for i in range(0, self.numberOfCell):
 			outputList.append(self.cellList[i].computing(inputList))
+			#print "Net computing: ", outputList, "number of cell: ", self.numberOfCell
 		return outputList
 
 	def weightRevise(self, n, inputList, outputList, exceptList):
@@ -70,4 +79,8 @@ class Layer:
 						the desire output
 		"""
 		for i in range(0, self.numberOfCell):
+			#print "weight list0: ", self.cellList[0].weight[0], " ", self.cellList[0].weight[1]
+			#print "weight list1: ", self.cellList[1].weight[0], " ", self.cellList[1].weight[1]
+
 			self.cellList[i].weightRevise(n, inputList, outputList[i], exceptList[i])
+

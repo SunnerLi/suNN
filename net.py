@@ -19,15 +19,20 @@ class Net:
 	"""
 		the class to define the net in perceptron
 	"""
-	numberOfLayer = 0			# The number of layer
-	layerList = []				# The list of the layer object
-	List_inputPattern = []		# The list of the input pattern
-	List_outputPattern = []		# The list of the output pattern
-	numberOftesttingCase = 0	# The number of test case
-	eta = 0.15					# Learning speed(eta value)
+	#define the debug mode
+	global debugMode
 
-	#def __init__(self):
-	#	pass
+	def __init__(self):
+		"""
+			The init function of the class
+			Initial the whole specific variables.
+		"""
+		self.numberOfLayer = 0			# The number of layer
+		self.layerList = []				# The list of the layer object
+		self.List_inputPattern = []		# The list of the input pattern
+		self.List_outputPattern = []		# The list of the output pattern
+		self.numberOftesttingCase = 0	# The number of test case
+		self.eta = 0.1					# Learning speed(eta value), 0.15 is best
 
 	def constructNet(self, _numberOfLayer):
 		"""
@@ -116,6 +121,7 @@ class Net:
 			Output 	=> the list that contain each output value
 		"""
 		outputList = inputList
+
 		for i in range(1, self.numberOfLayer):
 			#print "compute layer ", i
 			#print "outlist size: ", len(outputList)
@@ -127,7 +133,7 @@ class Net:
 			Learning main function.
 		"""
 		learnningTimes = 0			# The counter to record how many time we had done
-		templearnningTimes = 1000	# The upper time we should compute
+		templearnningTimes = 100	# The upper time we should compute
 
 		while templearnningTimes>0:
 			isJudgeTrue = True 		# Boolean represent if computing fail
@@ -164,5 +170,12 @@ class Net:
 						list of actual output, 
 						list of desire output
 		"""
+
 		for i in range(1, self.numberOfLayer):
 			self.layerList[i].weightRevise(self.eta, inputList, outputList, exceptList)
+
+	def assignWeightDirectly(self):
+		self.layerList[1].cellList[0].weight[0] = 0.5
+		self.layerList[1].cellList[0].weight[1] = 0.5
+		self.layerList[1].cellList[1].weight[0] = 0.5
+		self.layerList[1].cellList[1].weight[1] = 0.5

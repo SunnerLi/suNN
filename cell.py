@@ -10,17 +10,28 @@ import sys, random
 			-----------------
 """
 
+debugMode = False
+
+def setDebugMode(_):
+	global debugMode
+	debugMode = _
+
 class Cell:
 	"""
 		the class to define the Cell in perceptron
 	"""
-	theta = 1.2			# Theta value, the constant of the line which x+y is
-	numberOfInput = 0	# The number of Input
-	weight = []			# The list of weight.
+	#define the debug mode
+	global debugMode
 
-	#def __init__(self):
-		#constructor
-	#	pass
+	def __init__(self):
+		"""
+			The init function of the class
+			Initial the theta and weight.
+		"""
+		self.theta = 0.8			# Theta value, the constant of the line which x+y is.(1.2 is best)
+		self.numberOfInput = 0		# The number of Input
+		self.weight = []			# The list of weight.
+
 
 	def constructCell():
 		"""
@@ -51,7 +62,10 @@ class Cell:
 		# Summation and Threshold function(Activate function)
 		for i in range(0, self.numberOfInput):
 			r += (int)(inputList[i]) * self.weight[i]
-			#print "r= ", r
+			if debugMode == True:
+				print ""
+				print "input: ", inputList[i], "weight: ", self.weight[i]
+				print "sum: ", r
 		if r > self.theta:
 			return 1.0
 		else:
@@ -65,6 +79,10 @@ class Cell:
 		"""
 		for i in range(0, self.numberOfInput):
 			#print "outputItem: ", outputItem, "exceptItem: ", exceptItem
-			print "weight before: ", self.weight[i]
+			if debugMode == True:
+				print "weight before: ", self.weight[i]
+
 			self.weight[i] += n*(exceptItem-outputItem )*inputList[i]
-			print "weight after: ", self.weight[i]
+
+			if debugMode == True:
+				print "weight after : ", self.weight[i]
