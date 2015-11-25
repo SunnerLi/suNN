@@ -26,11 +26,11 @@ Ex: ```net.constructLayer([2, 1])```
 
 
 ## Limitation
-	After construct the layer, the weight is generated randomly. You didn't need to generate the weight necessarily.
+    After construct the layer, the weight is generated randomly. You didn't need to generate the weight necessarily.
 To generate the weight, use function ```net.weightGenerate```. The following code is wrong example:
 ```
 	net.constructLayer([2, 1])
 	net.tellPattern([0.0, 0.0, 1.0], [(float)(-1.0)])
 ```
-	Cause perceptron is the neural netwotk that cannot solve the non-linear seperate problem, You would test some case that would tain 
+    Cause perceptron is the neural netwotk that cannot solve the non-linear seperate problem, You would test some case that would tain 
 fail if you give the such non-linear pattern. To develop the perceptron program, you should avoid this situation.
